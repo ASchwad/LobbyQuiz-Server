@@ -195,13 +195,18 @@ function evaluateQuiz(players){
             }]};
         
         for(var i=0; i<players.puuids.length; i++){
-            quiz.questions[0].results.push(result = players.stats[i].csScore / players.stats[i].gamePlayed); 
-            quiz.questions[1].results.push(players.stats[i].visionScore / players.stats[i].gamePlayed);
-            quiz.questions[2].results.push(players.stats[i].victory / players.stats[i].gamePlayed * 100);
+            
+            quiz.questions[0].results.push((players.stats[i].csScore / players.stats[i].gamePlayed).toFixed(2));
+
+            quiz.questions[1].results.push((players.stats[i].visionScore / players.stats[i].gamePlayed).toFixed(2));
+    
+            quiz.questions[2].results.push((players.stats[i].victory / players.stats[i].gamePlayed * 100).toFixed(2));
+
             quiz.questions[3].results.push(players.stats[i].tripleKills);
-            quiz.questions[4].results.push(players.stats[i].objectiveTakenInvolved / players.stats[i].gamePlayed);
-            var preCalc = (players.stats[i].assists + players.stats[i].kills) / players.stats[i].deaths;
-            quiz.questions[5].results.push((Math.round(preCalc * 100) / 100).toFixed(2));
+
+            quiz.questions[4].results.push((players.stats[i].objectiveTakenInvolved / players.stats[i].gamePlayed).toFixed(2));
+
+            quiz.questions[5].results.push(((players.stats[i].assists + players.stats[i].kills) / players.stats[i].deaths).toFixed(2));
         }
         //console.log(quiz);
         return quiz;
