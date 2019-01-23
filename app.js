@@ -133,7 +133,12 @@ async function playQuiz(){
         puuids: [],
         stats: []
     }
-   credentials = await getCredentials();
+    try{
+        credentials = await getCredentials();
+    }catch(e){
+        return "Try opening the League Client"
+    }
+   
    
    token = credentials.token;
    port = credentials.port;
@@ -155,49 +160,50 @@ function evaluateQuiz(players){
             {
                 questionId: 1,
                 question: "Who has the most cs per game?",
-                results: {},
+                results: [],
                 kpi: "Creep Score per Game"
             },
             {
                 questionId: 2,
                 question: "Who has the highest vision score per game?",
-                results: {},
+                results: [],
                 kpi: "Vision Score per Game"
             },
             {
                 questionId: 3,
                 question: "Who has the best win rate? (In %)",
-                results: {},
+                results: [],
                 kpi: "Winrate in %"
             },
             {
                 questionId: 4,
                 question: "Who has the most triple kills?",
-                results: {},
+                results: [],
                 kpi: "Triple Kills"
             },
             {
                 questionId: 5,
                 question: "Who has the highest objective participation?",
-                results: {},
+                results: [],
                 kpi: "Objectives per Game"
             },
             {
                 questionId: 6,
                 question: "Who has the highest K/D/A?",
-                results: {},
+                results: [],
                 kpi: "KDA"
             }]};
         
         for(var i=0; i<players.puuids.length; i++){
-            quiz.questions[0].results[players.summonerNames[i]] = players.stats[i].csScore / players.stats[i].gamePlayed;
-            quiz.questions[1].results[players.summonerNames[i]] = players.stats[i].visionScore / players.stats[i].gamePlayed;
-            quiz.questions[2].results[players.summonerNames[i]] = players.stats[i].victory / players.stats[i].gamePlayed * 100;
-            quiz.questions[3].results[players.summonerNames[i]] = players.stats[i].tripleKills;
-            quiz.questions[4].results[players.summonerNames[i]]  = players.stats[i].objectiveTakenInvolved / players.stats[i].gamePlayed;
-            quiz.questions[5].results[players.summonerNames[i]]  = (players.stats[i].assists + players.stats[i].kills) / players.stats[i].deaths;
+            quiz.questions[0].results.push(result = players.stats[i].csScore / players.stats[i].gamePlayed); 
+            quiz.questions[1].results.push(players.stats[i].visionScore / players.stats[i].gamePlayed);
+            quiz.questions[2].results.push(players.stats[i].victory / players.stats[i].gamePlayed * 100);
+            quiz.questions[3].results.push(players.stats[i].tripleKills);
+            quiz.questions[4].results.push(players.stats[i].objectiveTakenInvolved / players.stats[i].gamePlayed);
+            var preCalc = (players.stats[i].assists + players.stats[i].kills) / players.stats[i].deaths;
+            quiz.questions[5].results.push((Math.round(preCalc * 100) / 100).toFixed(2));
         }
-        //console.log(quiz);  
+        //console.log(quiz);
         return quiz;
 };
     
