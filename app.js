@@ -8,9 +8,6 @@ const bodyParser = require('body-parser');
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
-//for now static
-var queue = "rank5solo";
-
 
 app.use((req, res, next) => {
     // How is allowed to access? --> Can be overwritten still
@@ -94,12 +91,12 @@ app.get('/getPlayers', function (req, res) {
  });
 
 
-function getStats(port, token, puuid){
+function getStats(port, token, puuid, queue, lane){
     return new Promise((resolve, reject) => {
         var options = {
             method: "GET",
             "rejectUnauthorized": false,
-            "url": "https://127.0.0.1:" + port + "/lol-career-stats/v1/summoner-stats/" + puuid + "/8/" + queue + "/BOTTOM",
+            "url": "https://127.0.0.1:" + port + "/lol-career-stats/v1/summoner-stats/" + puuid + "/8/" + queue + "/" + lane,
             "headers": {'Authorization': token, 'Accept': 'application/json'}
         };
     
@@ -110,8 +107,9 @@ function getStats(port, token, puuid){
                 var stats = responseBody.seasonSummary[8][queue].queueSummary.stats["CareerStats.js"];
            
                 resolve(stats);                
-            }else{
-                console.log(error);
+            }
+            if(response.statusCode == 404){
+                resolve([])
             }
         }
         request(options, returnData);
@@ -120,14 +118,16 @@ function getStats(port, token, puuid){
  };
 
  app.get('/playQuiz', function (req, res) {
-    playQuiz().then(data => {
+    playQuiz(req.body).then(data => {
         res.status(200).json({
             quiz: data
         });
     });    
  });
 
-async function playQuiz(){
+async function playQuiz(body){
+    var queue = body.queue;
+    var lane = body.lane;
     var players = {
         summonerNames: [],
         puuids: [],
@@ -147,7 +147,7 @@ async function playQuiz(){
    players.puuids = await getLobby(port, token, false);
    console.log(players);
    for(i=0; i<players.puuids.length; i++){
-        players.stats[i] = await getStats(port, token, players.puuids[i])
+        players.stats[i] = await getStats(port, token, players.puuids[i], queue, lane)
    }
    return evaluateQuiz(players);
 }
