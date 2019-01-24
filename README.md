@@ -81,7 +81,7 @@ questions like "Who surrendered the most?" or "Who has slain the most Teemos?"
 ## Conclusion
 Two of the three requirements have been fulfilled. In my opinion the Lobby Quiz currently lacks the Gamification component, since no answers can be chosen 
 nor can any points be won. Nevertheless the proof of concept is done and as a quizmaster, you can still quiz your mates and take their guesses.
-I was hoping to get the presentation prettier, but in the given time for this entry I am happy with the result and learnt a lot. 
+I was hoping to get the frontend prettier, but in the given time for this entry I am happy with the result and learnt a lot. 
 
 ## Special Thanks
-Thanks to the Riot API Team and Riot Management to make this API tinkering possible. Everybody wins at the end of this challenge! Special thanks also to Pupix for the Rift Explorer and the LCU Connector.
+Thanks to everybody who read all this! Thanks to the Riot API Team and Riot Management to make this API tinkering possible. Everybody wins at the end of this challenge! Special thanks also to Pupix for the Rift Explorer and the LCU Connector.
