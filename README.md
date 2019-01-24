@@ -44,9 +44,10 @@ The entry version has a one-directional data flow. The LobbyQuiz-Server extracts
 which presents the data to the user.
 
 #### Challenges
+* API    
+In Node.js I started out to have every process step as own request. But I did not see an advantage in having the user click more buttons before he can actually play. For the quiz use case, i wanted to have a summary function which does all the querys in the background and responds with the finished quiz object. 
 * async <-> sync   
-A bigger challenge for me to solve, was to fetch multiple API calls after each other within the synchronous Javascript. Challenged by this,
-i finally learned more about the usage of Promises and async code. I have spent several days in Callback hell... 
+Therefore a bigger challenge for me to solve, was to fetch multiple API calls after each other within the synchronous Javascript. Challenged by this, i finally learned more about the usage of Promises and async code. I have spent several days in Callback hell...   
 * Testing    
 Testing is / was not easy since this app is depending
 on other players in the lobby. In the beginning i was simulating the data, but luckily afterwards I just had constantly some afk mates sitting in my lobby.
