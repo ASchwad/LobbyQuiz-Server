@@ -88,3 +88,6 @@ I was hoping to get the frontend prettier, but in the given time for this entry 
 
 ## Special Thanks
 Thanks to everybody who read all this! Thanks to the Riot API Team and Riot Management to make this API tinkering possible. Everybody wins at the end of this challenge! Special thanks also to Pupix for the Rift Explorer and the LCU Connector.
+
+## Legal    
+Lobby Quiz was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.
