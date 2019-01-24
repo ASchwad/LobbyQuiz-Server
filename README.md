@@ -7,7 +7,7 @@ entertaining while waiting for your last lobby member, it is also encouraging to
 your Vision Score or your Creep Score. Based on these KPIs you can discuss as a team about which strategy to pick.
 
 Check this video for a quick demo.   
-[![](https://res.cloudinary.com/docguta73/image/upload/v1548291972/video_shot_dkv8gb.png)](https://youtu.be/QaXd3-j3tyM)
+[![](https://res.cloudinary.com/docguta73/image/upload/v1548291972/video_shot_dkv8gb.png)](https://www.youtube.com/watch?v=DISZC_sibvg)
 
 
 Which League Client API are you using?
